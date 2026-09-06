@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->foreignUuid('service_master_id')->nullable()->after('physiotherapist_id')->constrained('service_masters')->nullOnDelete();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->dropForeign('fk_appointments_service_master');
+            $table->dropColumn('service_master_id');
+        });
+    }
+};
