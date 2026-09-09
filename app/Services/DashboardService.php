@@ -177,7 +177,7 @@ class DashboardService implements DashboardServiceInterface
         $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         $data = [];
         foreach ($months as $index => $monthName) {
-            $data[$index + 1] = ['label' => $monthName, 'total' => 0];
+            $data[$index + 1] = ['label' => $monthName, 'month' => $monthName, 'total' => 0];
         }
         foreach ($collection as $item) {
             if (isset($data[$item->label])) {
