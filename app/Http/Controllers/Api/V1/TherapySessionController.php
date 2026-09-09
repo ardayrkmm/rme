@@ -188,7 +188,7 @@ class TherapySessionController extends Controller
                 // Check if payment already exists
                 $existingPayment = \App\Models\Payment::where('therapy_session_id', $session->id)->first();
                 if (!$existingPayment) {
-                    $totalPrice = $services->sum('price');
+                    $totalPrice = $services->sum('base_price');
                     $invoiceNumber = 'INV-' . date('Ymd') . '-' . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
                     $payment = \App\Models\Payment::create([
                         'invoice_number' => $invoiceNumber,
@@ -211,8 +211,8 @@ class TherapySessionController extends Controller
                             'service_master_id' => $service->id,
                             'service_name' => $service->name,
                             'quantity' => 1,
-                            'price' => $service->price,
-                            'subtotal' => $service->price
+                            'price' => $service->base_price,
+                            'subtotal' => $service->base_price
                         ]);
                     }
                 }
