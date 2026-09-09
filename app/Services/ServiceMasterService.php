@@ -57,9 +57,7 @@ class ServiceMasterService implements ServiceMasterServiceInterface
         DB::beginTransaction();
         try {
             // Generate Code otomatis
-            $lastService = \App\Models\ServiceMaster::withTrashed()->orderBy('id', 'desc')->first();
-            $nextNumber = $lastService ? $lastService->id + 1 : 1;
-            $data['code'] = 'LYN-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+            $data['code'] = 'SVC-' . date('YmdHis');
             
             // Map price from frontend to base_price in database
             if (isset($data['price'])) {
