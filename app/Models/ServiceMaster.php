@@ -16,13 +16,13 @@ class ServiceMaster extends Model
         'code',
         'category',
         'duration',
-        'price',
+        'base_price',
         'description',
         'is_active',
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
+        'base_price' => 'decimal:2',
         'duration' => 'integer',
         'is_active' => 'boolean',
     ];

@@ -15,7 +15,7 @@ class ServiceMasterResource extends JsonResource
             'code' => $this->code,
             'category' => $this->category,
             'duration' => $this->duration,
-            'price' => $this->price,
+            'price' => $this->base_price,
             'description' => $this->description,
             'is_active' => $this->is_active,
             'created_at' => $this->created_at,

@@ -35,7 +35,7 @@ class ServiceMasterService implements ServiceMasterServiceInterface
                 $service->name,
                 $service->category,
                 $service->duration,
-                $service->price,
+                $service->base_price,
                 $service->is_active ? 'Aktif' : 'Nonaktif',
                 $service->created_at->format('Y-m-d H:i:s'),
             ];
@@ -60,6 +60,12 @@ class ServiceMasterService implements ServiceMasterServiceInterface
             $lastService = \App\Models\ServiceMaster::withTrashed()->orderBy('id', 'desc')->first();
             $nextNumber = $lastService ? $lastService->id + 1 : 1;
             $data['code'] = 'LYN-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+            
+            // Map price from frontend to base_price in database
+            if (isset($data['price'])) {
+                $data['base_price'] = $data['price'];
+                unset($data['price']);
+            }
 
             $service = $this->serviceMasterRepository->create($data);
             DB::commit();
@@ -75,6 +81,10 @@ class ServiceMasterService implements ServiceMasterServiceInterface
     {
         DB::beginTransaction();
         try {
+            if (isset($data['price'])) {
+                $data['base_price'] = $data['price'];
+                unset($data['price']);
+            }
             $service = $this->serviceMasterRepository->update($id, $data);
             DB::commit();
             return $service;
