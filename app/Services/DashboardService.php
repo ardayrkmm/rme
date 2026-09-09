@@ -221,10 +221,8 @@ class DashboardService implements DashboardServiceInterface
                 ->orderBy('appointment_time', 'asc')
                 ->first();
 
-            $recentActivitiesRaw = \App\Models\ActivityLog::where('user_id', $user->id)
-                ->orderBy('created_at', 'desc')
-                ->limit(5)
-                ->get();
+            // Temporarily disabled due to DB schema mismatch
+            $recentActivitiesRaw = [];
             
             foreach ($recentActivitiesRaw as $log) {
                 $recentActivities[] = [

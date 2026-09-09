@@ -34,14 +34,15 @@ trait LogsActivity
         
         $description = "User " . ($userId ? "(ID: $userId)" : "Guest") . " performed {$action} on {$className}";
 
-        ActivityLog::create([
-            'user_id' => $userId,
-            'action' => $action,
-            'description' => $description,
-            'model_type' => $modelClass,
-            'model_id' => $model->id,
-            'ip_address' => $ip,
-            'user_agent' => $userAgent,
-        ]);
+        // Temporarily disable activity logging due to DB schema mismatch
+        // ActivityLog::create([
+        //     'user_id' => $userId,
+        //     'action' => $action,
+        //     'description' => $description,
+        //     'model_type' => $modelClass,
+        //     'model_id' => $model->id,
+        //     'ip_address' => $ip,
+        //     'user_agent' => $userAgent,
+        // ]);
     }
 }
