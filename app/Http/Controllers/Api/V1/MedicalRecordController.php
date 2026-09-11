@@ -34,7 +34,7 @@ class MedicalRecordController extends Controller
             }
         }
 
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $records = $this->medicalRecordService->getPaginatedRecords($filters, $perPage);
 
@@ -63,7 +63,7 @@ class MedicalRecordController extends Controller
         }
 
         $filters = $request->only([]);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $records = $this->medicalRecordService->getPatientHistory($patientId, $filters, $perPage);
 

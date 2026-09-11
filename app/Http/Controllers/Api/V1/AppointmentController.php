@@ -27,7 +27,7 @@ class AppointmentController extends Controller
         $this->authorize('viewAny', \App\Models\Appointment::class);
 
         $filters = $request->only(['search', 'status', 'start_date', 'end_date', 'patient_id', 'physiotherapist_id']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $appointments = $this->appointmentService->getPaginatedAppointments($filters, $perPage);
 
@@ -42,7 +42,7 @@ class AppointmentController extends Controller
         $this->authorize('viewAny', \App\Models\Appointment::class);
 
         $filters = $request->only(['search', 'start_date', 'end_date']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $appointments = $this->appointmentService->getHistoryPaginated($filters, $perPage);
 

@@ -13,7 +13,7 @@ class TherapySessionController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $perPage = min(100, (int) $request->input('per_page', 10));
+        $perPage = min(10000, (int) $request->input('per_page', 10));
         $search = $request->input('search');
 
         $query = TherapySession::with(['patient', 'physiotherapist', 'serviceMaster']);

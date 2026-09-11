@@ -25,7 +25,7 @@ class PhysiotherapistController extends Controller
         $this->authorize('viewAny', \App\Models\Physiotherapist::class);
 
         $filters = $request->only(['search', 'status']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $physiotherapists = $this->physiotherapistService->getPaginatedPhysiotherapists($filters, $perPage);
 

@@ -11,7 +11,7 @@ class ServiceCategoryController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $perPage = min(100, (int) $request->input('per_page', 100));
+        $perPage = min(10000, (int) $request->input('per_page', 100));
         $categories = ServiceCategory::paginate($perPage);
 
         return $this->successResponse($categories, 'Data kategori layanan berhasil diambil');

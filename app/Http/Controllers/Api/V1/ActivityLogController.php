@@ -27,7 +27,7 @@ class ActivityLogController extends Controller
         }
 
         $filters = $request->only(['search', 'action', 'start_date', 'end_date']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $logs = $this->activityLogService->getPaginatedLogs($filters, $perPage);
 

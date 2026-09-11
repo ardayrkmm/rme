@@ -26,7 +26,7 @@ class UserController extends Controller
         $this->authorize('manage', \App\Models\User::class);
 
         $filters = $request->only(['search', 'role']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $users = $this->userService->getPaginatedUsers($filters, $perPage);
 

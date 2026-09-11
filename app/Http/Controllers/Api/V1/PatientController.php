@@ -25,7 +25,7 @@ class PatientController extends Controller
         $this->authorize('viewAny', \App\Models\Patient::class);
 
         $filters = $request->only(['search']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $patients = $this->patientService->getPaginatedPatients($filters, $perPage);
 

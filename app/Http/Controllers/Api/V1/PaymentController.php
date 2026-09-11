@@ -24,7 +24,7 @@ class PaymentController extends Controller
     public function index(Request $request): JsonResponse
     {
         $filters = $request->only(['search', 'status', 'payment_method', 'start_date', 'end_date']);
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $payments = $this->paymentService->getPaginatedPayments($filters, $perPage);
 

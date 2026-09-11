@@ -28,7 +28,7 @@ class ServiceMasterController extends Controller
             $filters['is_active'] = filter_var($filters['is_active'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
         }
 
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
 
         $services = $this->serviceMasterService->getPaginatedServiceMasters($filters, $perPage);
 

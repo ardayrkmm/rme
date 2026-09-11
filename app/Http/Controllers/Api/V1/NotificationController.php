@@ -19,7 +19,7 @@ class NotificationController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
         $notifications = $this->notificationService->getUserNotifications($request->user()->id, false, $perPage);
 
         return $this->successResponse($notifications, 'Semua notifikasi berhasil diambil');
@@ -27,7 +27,7 @@ class NotificationController extends Controller
 
     public function unread(Request $request): JsonResponse
     {
-        $perPage = min(100, (int) $request->input('per_page', 15));
+        $perPage = min(10000, (int) $request->input('per_page', 15));
         $notifications = $this->notificationService->getUserNotifications($request->user()->id, true, $perPage);
 
         return $this->successResponse($notifications, 'Notifikasi belum dibaca berhasil diambil');
